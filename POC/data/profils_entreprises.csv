@@ -1,0 +1,68 @@
+entreprise,secteur d'activite,region,taille,chiffre d'affaire,fonction
+1,20,Wallonie,Grande (> 250 employes),> e 500 Million,Cadre / Dirigeant
+2,20,Wallonie,Petite (< 50 employes),< e 50 Million,Cadre / Dirigeant
+3,22,Wallonie,Moyenne (< 250 employes),< e 50 Million,Direction generale
+4,28,Wallonie,Petite (< 50 employes),< e 50 Million,Direction generale
+5,16,Wallonie,Petite (< 50 employes),< e 50 Million,Direction generale
+6,25,Wallonie,Petite (< 50 employes),< e 50 Million,Direction generale
+7,30,Wallonie,Petite (< 50 employes),< e 50 Million,Direction generale
+8,28,Wallonie,Moyenne (< 250 employes),< e 50 Million,Cadre / Dirigeant
+9,25,Luxembourg,Grande (> 250 employes),e 100 Million - e 500 Million,Direction generale
+10,22,Luxembourg,Moyenne (< 250 employes),< e 50 Million,Direction generale
+11,10,Rheinland-Pfalz,Grande (> 250 employes),e 100 Million - e 500 Million,Technicien / Ouvrier (specialise)
+12,10,Rheinland-Pfalz,Moyenne (< 250 employes),< e 50 Million,Technicien / Ouvrier (specialise)
+13,33,Rheinland-Pfalz,Petite (< 50 employes),< e 50 Million,Direction generale
+14,29,Rheinland-Pfalz,Grande (> 250 employes),> e 500 Million,Cadre / Dirigeant
+15,30,Autre,Grande (> 250 employes),> e 500 Million,Cadre / Dirigeant
+16,28,Rheinland-Pfalz,Grande (> 250 employes),e 100 Million - e 500 Million,Cadre / Dirigeant
+17,27,Rheinland-Pfalz,Grande (> 250 employes),e 100 Million - e 500 Million,Direction generale
+18,28,Rheinland-Pfalz,Grande (> 250 employes),e 50 Million - e 100 Million,Cadre / Dirigeant
+19,28,Saarland,Petite (< 50 employes),< e 50 Million,Cadre / Dirigeant
+20,29,Saarland,Grande (> 250 employes),> e 500 Million,Cadre / Dirigeant
+21,26,Saarland,Moyenne (< 250 employes),< e 50 Million,Direction generale
+22,26,Saarland,Moyenne (< 250 employes),< e 50 Million,Cadre / Dirigeant
+23,27,Autre,Grande (> 250 employes),> e 500 Million,Direction generale
+24,28,Luxembourg,Moyenne (< 250 employes),< e 50 Million,Direction generale
+25,22,Wallonie,Grande (> 250 employes),e 100 Million - e 500 Million,Ingenieur / Expert metier
+26,20,Luxembourg,Moyenne (< 250 employes),< e 50 Million,Direction generale
+27,22,Luxembourg,Moyenne (< 250 employes),e 100 Million - e 500 Million,Direction generale
+28,24,Luxembourg,Grande (> 250 employes),e 100 Million - e 500 Million,Cadre / Dirigeant
+29,22,Saarland,Grande (> 250 employes),< e 50 Million,Direction generale
+30,22,Lorraine,Petite (< 50 employes),< e 50 Million,Direction generale
+31,29,Lorraine,Moyenne (< 250 employes),< e 50 Million,Direction generale
+32,23,Lorraine,Petite (< 50 employes),< e 50 Million,Direction generale
+33,Autre,Autre,Grande (> 250 employes),e 50 Million - e 100 Million,Cadre / Dirigeant
+34,29,Rheinland-Pfalz,Grande (> 250 employes),> e 500 Million,Direction generale
+35,16,Lorraine,Moyenne (< 250 employes),< e 50 Million,Direction generale
+36,24,Lorraine,Petite (< 50 employes),< e 50 Million,Direction generale
+37,28,Lorraine,Moyenne (< 250 employes),< e 50 Million,Ingenieur / Expert metier
+38,28,Lorraine,Moyenne (< 250 employes),< e 50 Million,Technicien / Ouvrier (specialise)
+39,24,Saarland,Moyenne (< 250 employes),< e 50 Million,Cadre / Dirigeant
+40,32,Luxembourg,Grande (> 250 employes),e 100 Million - e 500 Million,Cadre / Dirigeant
+41,Autre,Rheinland-Pfalz,Moyenne (< 250 employes),< e 50 Million,Ingenieur / Expert metier
+42,29,Rheinland-Pfalz,Moyenne (< 250 employes),< e 50 Million,Ingenieur / Expert metier
+43,Autre,Rheinland-Pfalz,Petite (< 50 employes),< e 50 Million,Direction generale
+44,Autre,Wallonie,Petite (< 50 employes),< e 50 Million,Direction generale
+45,28,Wallonie,Moyenne (< 250 employes),< e 50 Million,Cadre / Dirigeant
+46,23,Wallonie,Petite (< 50 employes),< e 50 Million,Ingenieur / Expert metier
+47,27,Wallonie,Moyenne (< 250 employes),< e 50 Million,Direction generale
+48,25,Wallonie,Moyenne (< 250 employes),< e 50 Million,Direction generale
+49,Autre,Autre,Moyenne (< 250 employes),e 100 Million - e 500 Million,Cadre / Dirigeant
+50,28,Saarland,Grande (> 250 employes),e 50 Million - e 100 Million,Cadre / Dirigeant
+51,Autre,Autre,Moyenne (< 250 employes),< e 50 Million,Technicien / Ouvrier (specialise)
+52,28,Rheinland-Pfalz,Petite (< 50 employes),< e 50 Million,Cadre / Dirigeant
+53,28,Wallonie,Moyenne (< 250 employes),< e 50 Million,Cadre / Dirigeant
+54,Autre,Wallonie,Moyenne (< 250 employes),< e 50 Million,Cadre / Dirigeant
+55,10,Wallonie,Petite (< 50 employes),< e 50 Million,Direction generale
+56,Autre,Autre,Petite (< 50 employes),< e 50 Million,Cadre / Dirigeant
+57,20,Wallonie,Moyenne (< 250 employes),e 50 Million - e 100 Million,Cadre / Dirigeant
+58,10,Wallonie,Moyenne (< 250 employes),e 50 Million - e 100 Million,Cadre / Dirigeant
+59,Autre,Lorraine,Moyenne (< 250 employes),< e 50 Million,Cadre / Dirigeant
+60,25,Lorraine,Petite (< 50 employes),< e 50 Million,Direction generale
+61,29,Lorraine,Moyenne (< 250 employes),< e 50 Million,Direction generale
+62,10,Rheinland-Pfalz,Moyenne (< 250 employes),e 50 Million - e 100 Million,Technicien / Ouvrier (specialise)
+63,24,Rheinland-Pfalz,Moyenne (< 250 employes),< e 50 Million,Direction generale
+64,Autre,Saarland,Moyenne (< 250 employes),< e 50 Million,Direction generale
+65,25,Luxembourg,Petite (< 50 employes),< e 50 Million,Ingenieur / Expert metier
+66,30,Luxembourg,Moyenne (< 250 employes),< e 50 Million,Direction generale
+67,28,Saarland,Grande (> 250 employes),> e 500 Million,Cadre / Dirigeant
