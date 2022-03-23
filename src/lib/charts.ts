@@ -96,7 +96,7 @@ export function StackedBarChart(data, {
   marginRight = 0, // right margin, in pixels
   marginBottom = 0, // bottom margin, in pixels
   marginLeft = 40, // left margin, in pixels
-  width = 640, // outer width, in pixels
+  width = 1100, // outer width, in pixels
   height = 300, // outer height, in pixels
   xType = d3.scaleLinear, // type of x-scale
   xDomain = [0, 900], // [xmin, xmax]
@@ -114,7 +114,7 @@ export function StackedBarChart(data, {
 },
 xFormat, // a format specifier string for the x-axis
 xLabel = undefined, // a label for the x-axis
-colors = d3.schemeTableau10, // array of colors
+colors = ['#D171F0','#57B7F7','#5AE05A','#F7D457','#ED6753'], // array of colors
 } = {}) {
   // Compute values.
   const X = d3.map(data, x);
@@ -222,16 +222,16 @@ export function BarChart(data, {
   marginRight = 0, // the right margin, in pixels
   marginBottom = 30, // the bottom margin, in pixels
   marginLeft = 40, // the left margin, in pixels
-  width = 640, // the outer width of the chart, in pixels
-  height = 400, // the outer height of the chart, in pixels
-  xDomain, // an array of (ordinal) x-values
+  width = 1200, // the outer width of the chart, in pixels
+  height = 600, // the outer height of the chart, in pixels
+  xDomain =  d3.groupSort(data, ([d]) => -d.value, d => d.entreprise),// an array of (ordinal) x-values
   xRange = [marginLeft, width - marginRight], // [left, right]
   yType = d3.scaleLinear, // type of y-scale
   yDomain, // [ymin, ymax]
   yRange = [height - marginBottom, marginTop], // [bottom, top]
   xPadding = 0.1, // amount of x-range to reserve to separate bars
   yFormat, // a format specifier string for the y-axis
-  yLabel, // a label for the y-axis
+  yLabel = "Expertise Moyenne", // a label for the y-axis
   color = "currentColor", // bar fill color
   duration: initialDuration = 250, // transition duration, in milliseconds
   delay: initialDelay = (_, i) => i * 20 // per-element transition delay, in milliseconds

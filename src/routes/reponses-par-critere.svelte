@@ -13,14 +13,14 @@
     "Pas intéressée",
   ];
 
-  const CATEGORIES = [
+  const CRITERES = [
     "Région",
     "Secteur d'activités",
     "Taille",
     "Chiffre d'affaires",
     "Fonction",
   ];
-  let categorieSelected = CATEGORIES[0];
+  let critereSelected = CRITERES[0];
 
   const getExpertiseLevelFromAnswer = (answer) => {
     const expertiseLevels = {};
@@ -50,6 +50,8 @@
     })
 
     
+
+
     /*
     [...Array(5).keys()]
       .map((elmt) => {
@@ -87,15 +89,24 @@
     
 
     console.log("data"); 
-    console.log(data);
+    //console.log(data);
     return [
       { critère: "Lorraine", value: "1", count: 35},
       { critère: "Lorraine", value: "2", count: 135},
       { critère: "Lorraine", value: "3", count: 235},
+      { critère: "Westphalie", value: "2", count: 700},
+      { critère: "Westphalie", value: "3", count: 235},
+      { critère: "Moselle", value: "2", count: 135},
+      { critère: "Moselle", value: "3", count: 235},
+      { critère: "Moselle", value: "4", count: 35},
+      { critère: "Moselle", value: "5", count: 35},
+      { critère: "Metz", value: "1", count: 40},
+      { critère: "Metz", value: "2", count: 135},
+      { critère: "Metz", value: "3", count: 235},
       { critère: "Metz", value: "4", count: 35},
       { critère: "Metz", value: "5", count: 35}
     ]
-    return data;
+    //return data;
   };
 
   const generateGraph = (id) => {
@@ -117,7 +128,7 @@
 
   $: {
     if (mounted) {
-      generateGraph(categorieSelected);
+      generateGraph(critereSelected);
     }
   }
 </script>
@@ -140,12 +151,12 @@
   </div>
   <div class="col-2">
     <select
-      bind:value={categorieSelected}
+      bind:value={critereSelected}
       class="form-select"
     >
-      {#each CATEGORIES as categorie}
-        <option value={categorie}
-          >{categorie}</option
+      {#each CRITERES as critere}
+        <option value={critere}
+          >{critere}</option
         >
       {/each}
     </select>

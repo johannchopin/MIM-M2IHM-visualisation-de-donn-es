@@ -1,5 +1,5 @@
 <script>
-import ChoixSupplementaire from "./choix-supplementaire.svelte";
+import ChoixSupplementaire from "./expertise-moyen-par-categorie.svelte";
 
 </script>
 <div class="row">

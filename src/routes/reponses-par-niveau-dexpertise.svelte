@@ -117,7 +117,7 @@
       name="id-entreprise"
       id="id-entreprise-select"
     >
-      <option value="--all">Toute les entreprises</option>
+      <option value="--all">Toutes les entreprises</option>
       {#each $dataStore.entreprises as entreprise}
         <option value={entreprise[EntrepriseHeader.ID]}
           >{entreprise[EntrepriseHeader.ID]}</option
