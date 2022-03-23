@@ -1,33 +1,49 @@
-<script context="module">
-
-  const ENTREPRISE = 'entreprise'
-  const SA = 'secteur d\'activit�'
-
+<script context="module" lang="ts">
   export async function load({ fetch }) {
-    const url = `/data/profils_entreprises.csv`;
-    const response = await fetch(url);
-    const rows = (await response.text()).split("\n")
+      const fetchCsv = async (url: string) => {
+        const response = await fetch(url);
+        const rows = []
+        const _rows = (await response.text()).split("\n")
 
-    rows.forEach((row) => {
-      const columns = row.split(";"); //SPLIT COLUMNS
-      console.log(columns);
-    })
-  
+        const [header, ...data] = _rows
+
+        data.forEach((row) => {
+            const columns = row.split(";")
+            rows.push(columns)
+        })
+
+        return rows
+      }
+    
+
     return {
-      status: response.status,
       props: {
-        test: "",
+        entreprises: await fetchCsv('/data/profils_entreprises.csv'),
+        answers: await fetchCsv('/data/réponses_entreprises.csv')
       },
     };
   }
 </script>
 
 <script lang="ts">
+  import "bootstrap-icons/font/bootstrap-icons.css";
   import "../styles/global.scss";
   import Navbar from "$lib/components/Navbar.svelte";
+  import { data as dataStore } from '$lib/stores'
+import Footer from "$lib/components/Footer.svelte";
+
+  export let entreprises
+  export let answers
+
+  $dataStore.entreprises = entreprises
+  $dataStore.answers = answers.map((answer) => {
+      const [entrepriseId, ...entrepriseAnswers] = answer
+      return entrepriseAnswers
+  })
 </script>
 
-<Navbar />
-<main class="container">
-  <slot />
+<Navbar/>
+<main class="container mt-5">
+  <slot/>
 </main>
+<Footer/>

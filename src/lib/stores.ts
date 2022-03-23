@@ -1,6 +1,17 @@
 import { writable } from 'svelte/store'
 
-interface Data {}
+export enum EntrepriseHeader {
+  ID,
+  SA,
+  REGION,
+  TAILLE,
+  CA,
+  FONCTION
+}
+interface Data {
+  entreprises: {[ key in EntrepriseHeader]: string}[]
+  answers: string[][]
+}
 
 const createDataStore = () => {
   const { subscribe, update, set } = writable<Data>({} as Data)
