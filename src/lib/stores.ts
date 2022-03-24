@@ -11,6 +11,7 @@ export enum EntrepriseHeader {
 interface Data {
   entreprises: {[ key in EntrepriseHeader]: string}[]
   answers: string[][]
+  categories: [string, string][]
 }
 
 const createDataStore = () => {

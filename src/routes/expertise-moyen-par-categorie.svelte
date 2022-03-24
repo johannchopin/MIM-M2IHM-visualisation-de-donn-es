@@ -1,25 +1,12 @@
-<script>
+<script lang="ts">
   import { onMount } from "svelte";
 
   import { data as dataStore, EntrepriseHeader } from "$lib/stores";
   import { BarChart } from "$lib/charts";
-  
-  let mounted = false;
-  const EXPERTISE_NAME = [
-    "Débutant",
-    "Intermédiaire",
-    "Confirmé",
-    "Expert",
-    "Pas intéressée",
-  ];
 
-  const CATEGORIES = [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-  ];
+  let mounted = false;
+
+  const CATEGORIES = ["1", "2", "3", "4", "5"];
   let categorieSelected = CATEGORIES[0];
 
   const getExpertiseLevelFromAnswer = (answer) => {
@@ -37,90 +24,64 @@
     return expertiseLevels;
   };
 
+  const getQuestionsByCategorie = (criteriaId: string): string[] => {
+    const criterias: { [key: string]: string[] } = {};
+
+    $dataStore.categories.forEach((criteria) => {
+      const question = criteria[0];
+      let categorie = criteria[1];
+      if (categorie) {
+        categorie = categorie.trim();
+
+        if (criterias[categorie]) {
+          criterias[categorie].push(question);
+        } else {
+          criterias[categorie] = [question];
+        }
+      }
+    });
+
+    return criterias[criteriaId];
+  };
+
   const getGraphData = (id) => {
     let entrepriseIdInRegion = {};
 
-    $dataStore.entreprises.forEach(entreprise => {
-      const region = entreprise[EntrepriseHeader.REGION]
-      if (entrepriseIdInRegion[region]) {
-        entrepriseIdInRegion[region].push(entreprise)
-      } else {
-        entrepriseIdInRegion[region] = []
+    const average = (array) => {
+      if (array.length === 0 ) {
+        return 0
       }
-    })
+      return array.reduce((a, b) => a + b) / array.length
+    };
 
-    
+    const questions = getQuestionsByCategorie(id);
 
+    const data = []
 
-    /*
-    [...Array(5).keys()]
-      .map((elmt) => {
-        elmt += 1;
-        return elmt.toString();
-      })
-      .forEach((expertiseLevel) => {
-        if (isNaN(id)) {
-          $dataStore.answers.forEach((answer) => {
-            const answerExpertiseLevel = getExpertiseLevelFromAnswer(answer);
-            console.log(answerExpertiseLevel);
-            if (expertiseLevels[expertiseLevel]) {
-              expertiseLevels[expertiseLevel] +=
-                answerExpertiseLevel[expertiseLevel] || 0;
-            } else {
-              expertiseLevels[expertiseLevel] =
-                answerExpertiseLevel[expertiseLevel] || 0;
-            }
-          });
-        } else {
-          expertiseLevels = getExpertiseLevelFromAnswer(
-            $dataStore.answers[Number(id) - 1]
-          );
+    $dataStore.answers.forEach((answer, i) => {
+      const expertises = []
+
+      questions.forEach(questionId => {
+        const expertise = answer[questionId]
+        if (expertise) {
+          expertises.push(Number(expertise.replace('\r', '')))
         }
-      });
+      })
 
-    const data = Object.keys(expertiseLevels).map((expertiseLevel) => {
-      return {
-        name: EXPERTISE_NAME[Number(expertiseLevel) - 1],
-        region: expertiseLevels[expertiseLevel],
-        value: expertiseLevels[expertiseLevel],
-      };
+      console.log(expertises);
+      
+
+      data.push({entreprise: (i + 1).toString(), value: average(expertises)})
     });
-*/
+
     
 
-    console.log("data"); 
-    //console.log(data);
-    return [
-      { entreprise: "1", value: 0.5 },
-      { entreprise: "2", value: 0 },
-      { entreprise: "3", value: 1.5 },
-      { entreprise: "4", value: 1.8 },
-      { entreprise: "5", value: 1.2 },
-      { entreprise: "6", value: 2 },
-      { entreprise: "7", value: 4.5 },
-      { entreprise: "8", value: 4.9 },
-      { entreprise: "9", value: 4.4 },
-      { entreprise: "10", value: 4.4 },
-      { entreprise: "11", value: 4.4 },
-      { entreprise: "12", value: 3.5 },
-      { entreprise: "13", value: 3.6 },
-      { entreprise: "14", value: 5 },
-      { entreprise: "15", value: 2.8 },
-      { entreprise: "16", value: 0.6 },
-      { entreprise: "17", value: 0.6 },
-      { entreprise: "18", value: 2.7 },
-      { entreprise: "19", value: 3 },
-      { entreprise: "20", value: 3.2 },
-      { entreprise: "21", value: 3.1 },
-      { entreprise: "22", value: 4.5 },
-      
-    ]
-    //return data;
+    return data
   };
 
   const generateGraph = (id) => {
     const chart = BarChart(getGraphData(id), {
-      x: (d) => d.entreprise ,
+      x: (d) => d.entreprise,
       y: (d) => d.value,
     });
 
@@ -140,6 +101,7 @@
     }
   };
 </script>
+
 <div class="row">
   <div class="col-md-12">
     <h1>Tâche visuelle n°3.</h1>
@@ -154,18 +116,11 @@
 </div>
 
 <div class="row justify-content-end align-items-center">
-  <div class="col-1" style="text-align: end;">
-    Catégorie:
-  </div>
+  <div class="col-1" style="text-align: end;">Catégorie:</div>
   <div class="col-2">
-    <select
-      bind:value={categorieSelected}
-      class="form-select"
-    >
+    <select bind:value={categorieSelected} class="form-select">
       {#each CATEGORIES as categorie}
-        <option value={categorie}
-          >{categorie}</option
-        >
+        <option value={categorie}>{categorie}</option>
       {/each}
     </select>
   </div>
@@ -173,6 +128,6 @@
 
 <div class="row text-center">
   <div class="col-md-12">
-    <div id="barChart" class="p-5"/>
+    <div id="barChart" class="p-5" />
   </div>
 </div>
