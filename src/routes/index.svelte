@@ -41,15 +41,15 @@ import ChoixSupplementaire from "./expertise-moyen-par-categorie.svelte";
     </p>
   </div>
   <div class="col-md-1">
-    <img class="img-index" alt="logo svelte" src="../../static/assets/logo-svelte.png"/>
+    <img class="img-index" alt="logo svelte" src="/assets/logo-svelte.png"/>
   </div>
   <div class="col-md-1">
-    <img class="img-index" alt="logo D3.js" src="../../static/assets/logo-D3.png"/>
+    <img class="img-index" alt="logo D3.js" src="/assets/logo-D3.png"/>
   </div>
   <div class="col-md-1">
-    <img class="img-index" alt="logo Github" src="../../static/assets/logo-github.svg"/>
+    <img class="img-index" alt="logo Github" src="/assets/logo-github.svg"/>
   </div>
   <div class="col-md-1">
-    <img class="img-index" alt="logo Bootstrap" src="../../static/assets/logo-bootstrap.png"/>
+    <img class="img-index" alt="logo Bootstrap" src="/assets/logo-bootstrap.png"/>
   </div>  
 </div>

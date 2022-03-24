@@ -138,7 +138,7 @@
     if (mounted) {
       generateGraph(categorieSelected);
     }
-  }
+  };
 </script>
 <div class="row">
   <div class="col-md-12">
@@ -148,12 +148,15 @@
 <div class="row">
   <div class="col-md-12">
     <p>
-      Ici est représenté la répartition des réponses moyennes des 67 entreprises au questionnaire selon une catégorie de questions.
+      Ici est représenté la répartition des réponses moyennes des 67 entreprises au questionnaire selon une catégorie de question.
     </p>
   </div>
 </div>
 
-<div class="row justify-content-end align-items-center">
+<div class="row align-items-center">
+  <div class="col-9">
+    <button class="btn btn-secondary">Arrange</button>
+  </div>
   <div class="col-1" style="text-align: end;">
     Catégorie:
   </div>
