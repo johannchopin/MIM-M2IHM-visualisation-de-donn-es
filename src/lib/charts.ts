@@ -97,9 +97,9 @@ export function StackedBarChart(data, {
   marginBottom = 0, // bottom margin, in pixels
   marginLeft = 40, // left margin, in pixels
   width = 1100, // outer width, in pixels
-  height = 300, // outer height, in pixels
+  height = 500, // outer height, in pixels
   xType = d3.scaleLinear, // type of x-scale
-  xDomain = [0, 900], // [xmin, xmax]
+  xDomain, // [xmin, xmax]
   xRange = [marginLeft, width - marginRight], // [left, right]
   yDomain, // array of y-values
   yRange, // [bottom, top]
@@ -168,7 +168,7 @@ colors = ['#D171F0','#57B7F7','#5AE05A','#F7D457','#ED6753'], // array of colors
   }
   
   const svg = d3.create("svg")
-  .attr("width", width)
+  .attr("width", width+200)
   .attr("height", height)
   .attr("viewBox", [0, 0, width, height])
   .attr("style", "max-width: 100%; height: auto; height: intrinsic;");

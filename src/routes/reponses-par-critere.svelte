@@ -119,3 +119,12 @@
     <div id="stackedBarChart" class="p-5" />
   </div>
 </div>
+<div class="row text-center">
+  <div class="col-md-12 d-inline-flex align-items-center justify-content-center">
+    <div class="carre" style="background-color: #D171F0; margin-left:20px; margin-right:5px;"></div> Débutant
+    <div class="carre" style="background-color: #57B7F7; margin-left:20px; margin-right:5px;"></div> Intermédiaire
+    <div class="carre" style="background-color: #5AE05A; margin-left:20px; margin-right:5px;"></div> Confirmé
+    <div class="carre" style="background-color: #F7D457; margin-left:20px; margin-right:5px;"></div> Expert
+    <div class="carre" style="background-color: #ED6753; margin-left:20px; margin-right:5px;"></div> Pas intéressée
+  </div>
+</div>

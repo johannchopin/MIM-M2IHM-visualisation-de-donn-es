@@ -153,10 +153,7 @@
   </div>
 </div>
 
-<div class="row align-items-center">
-  <div class="col-9">
-    <button class="btn btn-secondary">Arrange</button>
-  </div>
+<div class="row justify-content-end align-items-center">
   <div class="col-1" style="text-align: end;">
     Catégorie:
   </div>
