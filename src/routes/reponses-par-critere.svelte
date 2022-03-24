@@ -1,117 +1,72 @@
-<script>
+<script lang="ts">
   import { onMount } from "svelte";
 
   import { data as dataStore, EntrepriseHeader } from "$lib/stores";
   import { StackedBarChart } from "$lib/charts";
-  
+
   let mounted = false;
-  const EXPERTISE_NAME = [
-    "Débutant",
-    "Intermédiaire",
-    "Confirmé",
-    "Expert",
-    "Pas intéressée",
-  ];
+  let critereSelected = EntrepriseHeader.REGION;
 
-  const CRITERES = [
-    "Région",
-    "Secteur d'activités",
-    "Taille",
-    "Chiffre d'affaires",
-    "Fonction",
-  ];
-  let critereSelected = CRITERES[0];
-
-  const getExpertiseLevelFromAnswer = (answer) => {
-    const expertiseLevels = {};
-
-    answer.forEach((expertiseLevelValue) => {
-      expertiseLevelValue = expertiseLevelValue.replace("\r", ""); // sanitize line return
-      if (expertiseLevels[expertiseLevelValue]) {
-        expertiseLevels[expertiseLevelValue] += 1;
-      } else {
-        expertiseLevels[expertiseLevelValue] = 1;
-      }
-    });
-
-    return expertiseLevels;
-  };
-
-  const getGraphData = (id) => {
-    let entrepriseIdInRegion = {};
-
-    $dataStore.entreprises.forEach(entreprise => {
-      const region = entreprise[EntrepriseHeader.REGION]
-      if (entrepriseIdInRegion[region]) {
-        entrepriseIdInRegion[region].push(entreprise)
-      } else {
-        entrepriseIdInRegion[region] = []
-      }
-    })
-
-    
-
-
-    /*
-    [...Array(5).keys()]
-      .map((elmt) => {
-        elmt += 1;
-        return elmt.toString();
-      })
-      .forEach((expertiseLevel) => {
-        if (isNaN(id)) {
-          $dataStore.answers.forEach((answer) => {
-            const answerExpertiseLevel = getExpertiseLevelFromAnswer(answer);
-            console.log(answerExpertiseLevel);
-            if (expertiseLevels[expertiseLevel]) {
-              expertiseLevels[expertiseLevel] +=
-                answerExpertiseLevel[expertiseLevel] || 0;
-            } else {
-              expertiseLevels[expertiseLevel] =
-                answerExpertiseLevel[expertiseLevel] || 0;
-            }
-          });
+  const getEntreprisesData = (ids: string[]): { [key: string]: number } => {
+    const values = {};
+    ids.forEach((id) => {
+      $dataStore.answers[Number(id)].forEach((answer) => {
+        if (values[answer] !== undefined) {
+          values[answer] = values[answer] + 1;
         } else {
-          expertiseLevels = getExpertiseLevelFromAnswer(
-            $dataStore.answers[Number(id) - 1]
-          );
+          values[answer] = 0;
         }
       });
-
-    const data = Object.keys(expertiseLevels).map((expertiseLevel) => {
-      return {
-        name: EXPERTISE_NAME[Number(expertiseLevel) - 1],
-        region: expertiseLevels[expertiseLevel],
-        value: expertiseLevels[expertiseLevel],
-      };
     });
-*/
-    
 
-    console.log("data"); 
-    //console.log(data);
-    return [
-      { critère: "Lorraine", value: "1", count: 35},
-      { critère: "Lorraine", value: "2", count: 135},
-      { critère: "Lorraine", value: "3", count: 235},
-      { critère: "Westphalie", value: "2", count: 700},
-      { critère: "Westphalie", value: "3", count: 235},
-      { critère: "Moselle", value: "2", count: 135},
-      { critère: "Moselle", value: "3", count: 235},
-      { critère: "Moselle", value: "4", count: 35},
-      { critère: "Moselle", value: "5", count: 35},
-      { critère: "Metz", value: "1", count: 40},
-      { critère: "Metz", value: "2", count: 135},
-      { critère: "Metz", value: "3", count: 235},
-      { critère: "Metz", value: "4", count: 35},
-      { critère: "Metz", value: "5", count: 35}
-    ]
-    //return data;
+    return values;
+  };
+
+  const getEntrepriseIdFromCriteria = (criteria: EntrepriseHeader) => {
+    let entrepriseIdInRegion = {};
+
+    $dataStore.entreprises.forEach((entreprise) => {
+      const region = entreprise[criteria];
+      if (entrepriseIdInRegion[region]) {
+        entrepriseIdInRegion[region].push(entreprise[EntrepriseHeader.ID]);
+      } else {
+        entrepriseIdInRegion[region] = [];
+      }
+    });
+
+    return entrepriseIdInRegion;
+  };
+
+  const getGraphData = (
+    criteria
+  ): { critère: string; value: string; count: number }[] => {
+    const data: { critère: string; value: string; count: number }[] = [];
+    let entrepriseIdInRegion = getEntrepriseIdFromCriteria(criteria);
+
+    Object.keys(entrepriseIdInRegion).forEach((region) => {
+      const entreprisesData = getEntreprisesData(entrepriseIdInRegion[region]);
+      console.log(entreprisesData);
+
+      [...Array(5).keys()]
+        .map((elmt) => {
+          elmt += 1;
+          return elmt.toString();
+        })
+        .forEach((indice) => {
+          data.push({
+            critère: region,
+            value: indice,
+            count: entreprisesData[indice],
+          });
+        });
+    });
+
+    return data;
   };
 
   const generateGraph = (id) => {
     const chart = StackedBarChart(getGraphData(id), {
-      x: (d) => d.count ,
+      x: (d) => d.count,
       y: (d) => d.critère,
       z: (d) => d.value,
     });
@@ -132,6 +87,7 @@
     }
   }
 </script>
+
 <div class="row">
   <div class="col-md-12">
     <h1>Tâche visuelle n°2.</h1>
@@ -140,30 +96,26 @@
 <div class="row">
   <div class="col-md-12">
     <p>
-      Ici est représenté la répartition des réponses de 67 entreprises au questionnaire selon plusieurs critères.
+      Ici est représenté la répartition des réponses de 67 entreprises au
+      questionnaire selon plusieurs critères.
     </p>
   </div>
 </div>
 
 <div class="row justify-content-end align-items-center">
-  <div class="col-1" style="text-align: end;">
-    Critère:
-  </div>
+  <div class="col-1" style="text-align: end;">Critère:</div>
   <div class="col-2">
-    <select
-      bind:value={critereSelected}
-      class="form-select"
-    >
-      {#each CRITERES as critere}
-        <option value={critere}
-          >{critere}</option
-        >
-      {/each}
+    <select bind:value={critereSelected} class="form-select">
+      <option value={EntrepriseHeader.REGION}>Région</option>
+      <option value={EntrepriseHeader.SA}>Secteur d'activités</option>
+      <option value={EntrepriseHeader.TAILLE}>Taille</option>
+      <option value={EntrepriseHeader.CA}>Chiffre d'affaires</option>
+      <option value={EntrepriseHeader.FONCTION}>Fonction</option>
     </select>
   </div>
 </div>
 <div class="row text-center">
   <div class="col-md-12">
-    <div id="stackedBarChart" class="p-5"/>
+    <div id="stackedBarChart" class="p-5" />
   </div>
 </div>

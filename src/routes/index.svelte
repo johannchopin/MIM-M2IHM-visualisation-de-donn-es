@@ -1,7 +1,3 @@
-<script>
-import ChoixSupplementaire from "./expertise-moyen-par-categorie.svelte";
-
-</script>
 <div class="row">
   <div class="col-md-12">
     <h1>Projet: Visualisation et analyse visuelle des données</h1>
